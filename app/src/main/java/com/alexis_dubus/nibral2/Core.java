@@ -12,12 +12,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class Core extends SQLiteOpenHelper {
     public static final String DATABASE_NAME_OLD = "Animation.db";
-    public static final String DATABASE_NAME = "Nibral.db";
+    public static final String DATABASE_NAME = "Nibral2.db";
     public static final String TABLE_NAME = "Utilisateur";
     public static final String idUser = "id";
     public static final String nomUser = "nom";
     public static final String telUser = "tel";
     public static final String mailUser = "mail";
+    public static final String mdpuser = "mdp";
     public static final String listeReservationUser = "listeReservation";
     public static final String typeUtilisateur = "typeUtilisateur";
     //public static final String COL_4 = "mail";
@@ -29,7 +30,7 @@ public class Core extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT, tel TEXT, mail TEXT, listeReservation TEXT, typeUtilisateur TEXT  )");
+        db.execSQL("create table " + TABLE_NAME + " (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT, tel TEXT NULL, mail TEXT NULL, listeReservation TEXT NULL, typeUtilisateur TEXT NULL, mdp TEXT NULL )");
     }
 
     @Override
@@ -37,17 +38,29 @@ public class Core extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS" + TABLE_NAME); //remove ?????
         onCreate(db);
     }
-    public boolean insertFirstData(String name, String mail)
+
+    public boolean insertFirstData(String mdp, String mail)
     {
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(nomUser, name);
+        contentValues.put(mdpuser, mdp);
         contentValues.put(mailUser, mail);
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1)
             return false;
         else
             return true;
+    }
+    public Boolean connexion(String email, String mdpuser) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME +" WHERE mail = "+ email + " and mdp = "+ mdpuser , null);
+        if(res.getString(0) != null || res.getString(1) != null)
+        {
+            return true;
+        }
+        else
+            return false;
+        //en test
     }
 
     public boolean insertData(String name, String type, String classes)

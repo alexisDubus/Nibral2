@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -315,6 +316,20 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             try {
                 // Simulate network access.
                 Thread.sleep(2000);
+                boolean isPresent = myDb.connexion(mEmail,mPassword);
+                boolean isInserted = myDb.insertFirstData(mEmail,mPassword);
+                if(isPresent)
+                {
+                    goFrance();
+                }
+
+              /*  if (isInserted)
+                {
+                    Toast.makeText(LoginActivity.this, "Donnée insérés", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(LoginActivity.this, "Données non insérés" , Toast.LENGTH_LONG).show();
+                } */
             } catch (InterruptedException e) {
                 return false;
             }
@@ -329,6 +344,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             // TODO: register the new account here.
             return true;
+        }
+        public void goFrance()
+        {
+            Intent intent = new Intent(LoginActivity.this, restaurant.class);
+            startActivity(intent);
         }
 
         @Override
