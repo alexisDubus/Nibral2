@@ -29,7 +29,11 @@
         <activity
             android:name=".restaurant"
             android:label="@string/title_activity_restaurant"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MonCompte"
+            android:label="@string/title_activity_mon_compte" />
+        <activity android:name=".monCompte2"></activity>
     </application>
 
 </manifest>

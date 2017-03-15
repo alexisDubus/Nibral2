@@ -318,12 +318,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 Thread.sleep(2000);
                 //boolean isPresent = myDb.connexion(mEmail,mPassword); //BUG
                 boolean isInserted = myDb.insertFirstData(mEmail,mPassword);
-               // if(isPresent)
-              //  {
+                // if(isPresent)
+                //  {
                     goRestaurant();
-             //   }
+                //   }
 
-              /*  if (isInserted)
+                /*  if (isInserted)
                 {
                     Toast.makeText(LoginActivity.this, "Donnée insérés", Toast.LENGTH_LONG).show();
                 }

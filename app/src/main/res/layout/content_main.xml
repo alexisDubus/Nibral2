@@ -23,10 +23,11 @@
         android:layout_alignParentEnd="true" />
 
     <ImageButton
+        android:id="@+id/imageButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/france"
-        android:id="@+id/imageButton2"
-        android:layout_below="@+id/imageButton"
+        app:srcCompat="@drawable/french"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
+
 </RelativeLayout>
