@@ -37,7 +37,18 @@ public class Core extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS" + TABLE_NAME); //remove ?????
         onCreate(db);
     }
-
+    public boolean insertFirstData(String name, String mail)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(nomUser, name);
+        contentValues.put(mailUser, mail);
+        long result = db.insert(TABLE_NAME, null, contentValues);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
 
     public boolean insertData(String name, String type, String classes)
     {
