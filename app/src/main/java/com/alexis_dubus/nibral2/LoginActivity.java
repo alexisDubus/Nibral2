@@ -316,12 +316,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             try {
                 // Simulate network access.
                 Thread.sleep(2000);
-                boolean isPresent = myDb.connexion(mEmail,mPassword);
+                //boolean isPresent = myDb.connexion(mEmail,mPassword); //BUG
                 boolean isInserted = myDb.insertFirstData(mEmail,mPassword);
-                if(isPresent)
-                {
-                    goFrance();
-                }
+               // if(isPresent)
+              //  {
+                    goRestaurant();
+             //   }
 
               /*  if (isInserted)
                 {
@@ -345,7 +345,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // TODO: register the new account here.
             return true;
         }
-        public void goFrance()
+        public void goRestaurant()
         {
             Intent intent = new Intent(LoginActivity.this, restaurant.class);
             startActivity(intent);
